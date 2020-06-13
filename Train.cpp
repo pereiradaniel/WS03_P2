@@ -34,6 +34,7 @@ namespace sdds
 		cargo_unit = nullptr;
 	}
 
+	
 	bool Train::isValid() const
 	{
 		// Set bool to true by default:
@@ -49,6 +50,7 @@ namespace sdds
 		return valid;
 	}
 
+	
 	void Train::loadCargo(Cargo car)
 	{
 		// Detect if cargo exists:
@@ -65,6 +67,7 @@ namespace sdds
 		cargo_unit->cargo_weight = car.cargo_weight;
 	}
 
+
 	void Train::unloadCargo()
 	{
 		// Detect if cargo exists:
@@ -76,6 +79,7 @@ namespace sdds
 		}
 	}
 
+	
 	void Train::display() const
 	{
 		cout << "***Train Summary***" << endl;
@@ -104,4 +108,19 @@ namespace sdds
 			cout << "This is an invalid train." << endl;
 		}
 	}
+
+	
+	bool swapCargo(Train& other)
+	{
+	};
+
+
+	bool increaseCargo(double weight)
+	{
+	};
+
+
+	bool decreaseCargo(double weight)
+	{
+	};
 }

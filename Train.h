@@ -27,6 +27,9 @@ namespace sdds
 			void display() const;
 			void loadCargo(Cargo);
 			void unloadCargo();
+			bool swapCargo(Train& other);
+			bool increaseCargo(double weight);
+			bool decreaseCargo(double weight);
 	};
 }
 
