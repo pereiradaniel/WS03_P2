@@ -16,7 +16,7 @@ namespace sdds
 
 	class Train
 	{
-		private:
+		// private:
 			char train_name[MAX_NAME + 1];
 			int train_id;
 			Cargo* cargo_unit;

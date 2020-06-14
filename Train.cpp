@@ -1,14 +1,7 @@
-// I have done all the coding by myselfand only copied the code that my professor
-// provided to complete my workshopsand assignments.
-//
-// Name:			Daniel Pereira
-// Seneca email:	dppereira@myseneca.ca
-// Student ID:		037747078
-// Date:  Wednesday, 10/June/2020
-
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <cstring>
+#include <iomanip>
 #include "Train.h"
 
 using namespace std;
@@ -63,8 +56,11 @@ namespace sdds
 
 		// Load new cargo:
 		cargo_unit = new Cargo;	// Set this.cargo_unit to the new Cargo.
-		strcpy(cargo_unit->cargo_description, car.cargo_description);
-		cargo_unit->cargo_weight = car.cargo_weight;
+		this->cargo_unit->setDesc(car.getDesc());
+		this->cargo_unit->setWeight(car.getWeight());
+
+		// strcpy(cargo_unit->cargo_description, car.cargo_description);
+		// cargo_unit->cargo_weight = car.cargo_weight;
 	}
 
 
@@ -94,7 +90,8 @@ namespace sdds
 			if (cargo_unit)
 			{
 				// If cargo exists, print output:
-				cout << "Cargo: " << cargo_unit->cargo_description << endl << "Weight: " << cargo_unit->cargo_weight << endl;
+				cout << "Cargo: " << cargo_unit->getDesc() <<
+				endl << "Weight: " << cargo_unit->getWeight() << endl;
 			}
 			else
 			{
@@ -110,17 +107,74 @@ namespace sdds
 	}
 
 	
-	bool swapCargo(Train& other)
+	bool Train::swapCargo(Train& other)
 	{
+		bool swapped = false;
+		if (cargo_unit == nullptr || other.cargo_unit == nullptr)
+		{
+			swapped = false;
+		}
+		else
+		{
+			Cargo* temporary_cargo = cargo_unit;
+			cargo_unit = other.cargo_unit;
+			other.cargo_unit = temporary_cargo;
+			swapped = true;
+		}
+		return swapped;
+	};
+	
+	bool Train::increaseCargo(double weight)
+	{
+		bool increased = false;
+		
+		// Detect if valid cargo_unit or if already at MAX_WEIGHT:
+		if (cargo_unit == nullptr || cargo_unit->getWeight() == MAX_WEIGHT)
+		{
+			// Cannot increaseCargo:
+			increased = false;
+		}
+		else
+		{
+			// Detect if the new cargo will exceed MAX_WEIGHT:
+			if (cargo_unit->getWeight() + weight > MAX_WEIGHT)
+			{
+				cargo_unit->setWeight(MAX_WEIGHT);
+			}
+			else
+			{
+				// Add the new cargo full weight if it does not exceed the MAX:
+				cargo_unit->setWeight(cargo_unit->getWeight() + weight);
+			}
+			increased = true;
+		}
+		return increased;
 	};
 
 
-	bool increaseCargo(double weight)
+	bool Train::decreaseCargo(double weight)
 	{
-	};
+		bool decreased = false;
 
-
-	bool decreaseCargo(double weight)
-	{
+		// Detect if valid cargo_unit or if already at MIN_WEIGHT:
+		if (cargo_unit == nullptr || cargo_unit->getWeight() == MIN_WEIGHT)
+		{
+			decreased = false;
+		}
+		else
+		{
+			// If enough cargo is removed to reach MIN_WEIGHT:
+			if (cargo_unit->getWeight() - weight < MIN_WEIGHT)
+			{
+				cargo_unit->setWeight(MIN_WEIGHT);
+			}
+			else
+			{
+				// If removal of weight doesn't reach MIN_WEIGHT:
+				cargo_unit->setWeight(cargo_unit->getWeight() - weight);
+			}
+			decreased = true;
+		}
+		return decreased;
 	};
 }

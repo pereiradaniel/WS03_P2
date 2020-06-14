@@ -1,11 +1,3 @@
-// I have done all the coding by myselfand only copied the code that my professor
-// provided to complete my workshopsand assignments.
-//
-// Name:			Daniel Pereira
-// Seneca email:	dppereira@myseneca.ca
-// Student ID:		037747078
-// Date:  Wednesday, 10/June/2020
-
 #ifndef SDDS_CARGO_H
 #define SDDS_CARGO_H
 
@@ -19,7 +11,8 @@ namespace sdds
 	{
 		char cargo_description[MAX_DESC + 1];  // +1 for null terminator.
 		double cargo_weight;
-	private:
+
+	public:
 		void initialize(const char* desc, double weight);
 		const char* getDesc() const;
 		double getWeight() const;
