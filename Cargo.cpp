@@ -41,7 +41,6 @@ namespace sdds
 	
 	void Cargo::setDesc(const char* description)
 	{
-		// a modifier that sets the description of the cargo. If the string is longer than MAX_DESC, accept only MAX_DESC characters.
 		strcpy((*this).cargo_description, description);
 	};
 

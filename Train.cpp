@@ -84,15 +84,21 @@ namespace sdds
 		if (isValid())
 		{
 			// If valid, print output:
-			cout << "Name: " << train_name << endl << "ID: " << train_id << endl;
+			cout << "    Name: " << train_name << endl << "      ID: " << train_id << endl;
 		
 			// Detect if train has cargo:
 			if (cargo_unit)
 			{
 				// If cargo exists, print output:
+				ios_base::fmtflags old_flags = cout.flags();
+				std::streamsize old_prec = cout.precision();
+
 				cout << fixed << setprecision(2);
-				cout << "Cargo: " << cargo_unit->getDesc() <<
-				endl << "Weight: " << cargo_unit->getWeight() << endl;
+				cout << "   Cargo: " << cargo_unit->getDesc() <<
+				endl << "  Weight: " << cargo_unit->getWeight() << endl;
+			
+				cout.precision(old_prec);
+				cout.flags(old_flags);
 			}
 			else
 			{
