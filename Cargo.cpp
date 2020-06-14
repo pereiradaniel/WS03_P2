@@ -8,8 +8,22 @@ namespace sdds
 {
 	void Cargo::initialize(const char* desc, double weight)
 	{
-		setDesc(desc);
-		setWeight(weight);
+		if (strlen(desc) <= MAX_DESC + 1)
+		{
+			setDesc(desc);
+		}
+		else
+		{
+			setDesc("\0");
+		}
+		if (weight >= MIN_WEIGHT && weight <= MAX_WEIGHT)
+		{
+			setWeight(weight);
+		}
+		else
+		{
+			setWeight(MIN_WEIGHT);
+		}
 	}
 
 	
@@ -34,7 +48,7 @@ namespace sdds
 
 	void Cargo::setWeight(double weight)
 	{
-		(*this).cargo_weight = weight;
+		this->cargo_weight = weight;
 	};
 
 }
