@@ -90,6 +90,7 @@ namespace sdds
 			if (cargo_unit)
 			{
 				// If cargo exists, print output:
+				cout << fixed << setprecision(2);
 				cout << "Cargo: " << cargo_unit->getDesc() <<
 				endl << "Weight: " << cargo_unit->getWeight() << endl;
 			}
